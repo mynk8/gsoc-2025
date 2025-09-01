@@ -1,1 +1,131 @@
-# gsoc-2025
+# GSoC '25: Create a service to get a new project to Fedora more easily
+
+<img width="250" height="251" alt="image" src="https://github.com/user-attachments/assets/6bacd466-eaab-434b-b947-7c80d588aee0" />
+
+## Contributor Information
+
+-   **Name:** Mayank Singh
+-   **Email:** mr.mayankgame@gmail.com
+-   **GitHub:** https://github.com/mynk8
+-   **Organization:** [Fedora Linux](https://www.fedoraproject.org/)
+-   **Project Repository:** https://github.com/packit/avant
+-   **Mentors:** František Lachman
+-   **Project Duration:** 350 hours
+
+---
+
+## 1. Description
+
+The project introduces a proof-of-concept Git-based workflow for the Fedora package review process, an alternative to the older Bugzilla-based system.
+
+Contributors can now create, submit, and manage their package reviews through Pull Requests in a centralized Forgejo repository. The service takes care of building the packages, testing, and compliance checking with the `fedora-review` tool, and provides real-time feedback on the PR page.
+
+By integrating Git with automated tooling in a centralized place, it's much easier for new contributors to get their packages into the distribution.
+
+---
+
+## 2. Background & Motivation
+
+The traditional workflow for submitting a new package to Fedora was fragmented and tedious, relying on a manual process involving `.spec` files, external file hosting, and Bugzilla tickets. This created a high-friction environment with slow feedback loops, which often discouraged potential contributors.
+
+This project was motivated by the critical need to modernize this experience. By creating a centralized, Git-based platform, the goal was to lower the barrier to entry, attract more package maintainers, and improve the overall efficiency of the Fedora package ecosystem.
+
+---
+
+## 3. Goals & Objectives
+
+The key objectives were:
+-   **Proof of Concept for a new workflow** - Replace the fragmented Bugzilla-based workflow with a unified Git-based system that centralizes package reviews around Pull Requests in Forgejo repositories.
+-   **Automate Package Review Workflow** - Implement automated building, testing, and compliance checking using COPR builds, Testing Farm integration, and `fedora-review` tools to provide immediate feedback to contributors on every new commit.
+-   **Create Seamless Developer Experience** - Enable contributors to get useful feedback on their packages from both tools and experts in the community.
+
+---
+
+## 4. Walkthrough
+
+A simple walkthrough of the service.
+
+### 1. Prepare the Package
+
+The journey begins in a familiar Git environment. A contributor starts by forking the central review repository to create their own personal workspace. In their local clone, they add the essential packaging files: the `.spec` file that defines how the package is built and the `sources` file containing the upstream code.
+
+<img width="1313" height="378" alt="Adding package files locally" src="https://github.com/user-attachments/assets/fc783da6-0787-4ae1-9c23-1828924a46d0" />
+
+<img width="1313" height="573" alt="Local git commit" src="https://github.com/user-attachments/assets/ebaef85c-d9a3-4670-9f71-813f0e983e25" />
+
+### 2. Submit for Review
+
+Once the files are ready, the contributor commits their changes and opens a Pull Request against the main repository. This single action is the trigger that brings the entire automated review system to life. No more Bugzilla tickets or manual uploads—the PR is now the central hub for everything that follows.
+
+<img width="1861" height="913" alt="Creating a Pull Request" src="https://github.com/user-attachments/assets/2bd21ee5-ee13-4749-be75-4101df7afdc3" />
+
+### 3. Receive Instant, Automated Feedback
+
+Immediately after the PR is opened, the service gets to work. The contributor can see real-time status checks appear directly on the PR page, starting with the SRPM build.
+
+<img width="975" height="421" alt="Initial status checks on the PR" src="https://github.com/user-attachments/assets/746ba893-6a07-4698-a186-32904072f62e" />
+
+When the checks are completed, the service posts a comment with the results of the `fedora-review` tool. This provides immediate, actionable feedback, clearly categorizing issues into "must," "should," and "extras," so the contributor knows exactly what to address.
+
+<img width="1861" height="803" alt="Fedora-review results posted as a comment" src="https://github.com/user-attachments/assets/5759ec64-3811-4bcd-a5d4-d266efde088b" />
+
+One can inspect the list of checks that failed, are pending, and are also categorized by "should," "must," and "extras." After a while, `rpmlint` and install checks are finished; they are failing in this case.
+
+<img width="1561" height="421" alt="Failed rpmlint and install checks" src="https://github.com/user-attachments/assets/e0db75de-4abc-45c6-81b4-2e8b3ce7e0c2" />
+
+We can inspect the logs by clicking the "Details" link, which redirects the user to Packit's dashboard.
+
+<img width="1562" height="421" alt="Packit service dashboard" src="https://github.com/user-attachments/assets/9dc2bd57-41ee-4773-b7fc-0518ad7a12ed" />
+
+<img width="1562" height="509" alt="Build details in the dashboard" src="https://github.com/user-attachments/assets/d1948864-7562-48f7-ac23-77a51732a9d6" />
+
+Checking the latest entry here, we can find the Testing Farm run and inspect the logs to trace the cause of failure. The checks failed due to a broken package and its dependencies.
+
+<img width="1562" height="454" alt="Testing Farm logs showing failure" src="https://github.com/user-attachments/assets/e1990ba0-4e2b-4f67-93e5-89ff8539edaf" />
+
+### 4. Iterate and Collaborate
+
+With clear logs and feedback, the contributor can fix the issue in their local repository and simply push a new commit. The service automatically detects the change and re-runs the entire suite of checks, providing updated feedback.
+
+This creates a tight, rapid feedback loop. Experienced packagers can also join the discussion directly in the PR, reviewing the code and inspecting the same test results, making collaboration seamless and efficient.
+
+---
+
+## 5. Project Timeline
+
+| Dates                  | Milestones & Goals                                                                                                                                                                                             |
+| :--------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [June 27 - July 7](https://communityblog.fedoraproject.org/simplifying-fedora-package-submission-progress-27-june-14-july-gsoc-25/)     | **Foundation & Architecture**<br>• Present high-level architecture to Fedora community<br>• Decide on monorepo model for package submissions<br>• Set up local development environment with `packit-service`<br>• Begin prototyping user flow with new APIs and handlers |
+| [July 8 - July 15](https://communityblog.fedoraproject.org/simplifying-package-submission-progress-8-july-15-july-gsoc-25/)     | **Forgejo Integration & Event Handling**<br>• Migrate service forge to Forgejo (open-source alternative to GitHub)<br>• Add support for parsing issue and push events<br>• Implement parsing commands from issue comments<br>• Resolve technical challenges with package source handling |
+| [July 15 - July 22](https://communityblog.fedoraproject.org/simplifying-package-submission-progress-15-july-22-july-gsoc-25/)    | **Core Functionality & Build System**<br>• Extend Forgejo support in `packit-service`<br>• Write sample handler for reading from new Pull Requests<br>• Enable dynamic package config construction for builds<br>• Get COPR integration running for package builds |
+| [July 22 - July 29](https://communityblog.fedoraproject.org/simplifying-package-submission-progress-22-july-29-july-gsoc-25/)    | **Status Reporting & Integration**<br>• Implement commit status reporting for package actions<br>• Add support for Forgejo commit status API in `ogr` library<br>• Enable `fedora-review` tool for all COPR builds<br>• Begin work on status reporting and comments |
+| [July 29 - August 7](https://communityblog.fedoraproject.org/?p=15016&preview=1&_ppp=af8f79d7c0)   | **Enhanced Status & Feedback**<br>• Complete commit status implementation for Forgejo<br>• Report build and test results directly to PRs<br>• Focus on comment functionality and status updates<br>• Begin unit testing for new functionality |
+| [August 7 - August 14](https://communityblog.fedoraproject.org/?p=15017&preview=1&_ppp=f76ab3be62) | **Workflow Optimization**<br>• Eliminate requirement for `packit.yaml` configuration<br>• Align with standard `dist-git` layout<br>• Parse specfile directly from PRs<br>• Resolve container and dependency issues |
+| [Aug 14 - Aug 22](https://communityblog.fedoraproject.org/?p=15019&preview=1&_ppp=07904fa547)      | **Testing & Reporting Improvements**<br>• Implement separate status reporting for `rpmlint` and installation tests<br>• Switch to JSON-based `fedora-review` reports<br>• Improve comment formatting with collapsible sections<br>• Work on unit testing challenges |
+| [Aug 22 - Aug 29](https://communityblog.fedoraproject.org/?p=15007&preview=1&_ppp=833ee35c05)      | **Final Integration & Documentation**<br>• Complete Testing Farm integration<br>• Finalize automated review workflow<br>• Prepare project demonstration                                                              |
+| `August 29+`           | **Deployment & Upstream Contribution**<br>• **[Pending]** Deploy service containers for public use on Communishift<br>• Configure [validation](https://github.com/packit/validation/tree/main) tests <br>• Write documentation<br>• **[Pending]** Merge Forgejo integration code into upstream. |
+
+---
+
+## Learnings and Acknowledgements
+
+### Key Learnings
+
+-   **Git Forge Integration:** Gained a deep understanding of interfacing with Git forges by contributing Forgejo support to the `ogr` library.
+-   **Container Orchestration:** Developed skills in managing containerized services, secrets, and resolving deployment challenges on Communishift (OpenShift/Kubernetes).
+-   **Asynchronous Service Debugging:** Acquired advanced skills in debugging and tracing issues in complex, event-driven, and asynchronous services where problems are not easily reproducible.
+-   **API and Webhook Handling:** Learned best practices for parsing, digesting, and securely handling webhook data from external services.
+
+### Future Plans
+
+This service provides a strong foundation for further innovation. Future enhancements could include:
+
+-   **Automated `dist-git` Onboarding:** Extending the service to automatically create a new `dist-git` repository and push the approved package upon PR merge.
+-   **Monorepo Dependency Handling:** Supporting complex scenarios where a submitted package has dependencies that also exist within the same PR or needs review.
+
+### Acknowledgements
+
+-   **František Lachman:** Grateful for the constant support and guidance throughout the project.
+-   **Fedora Community:** For their support, discussions, and feedback that helped shape the project.
+
+Overall, GSoC was a great learning experience for me.
