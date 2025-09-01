@@ -28,7 +28,7 @@ By integrating Git with automated tooling in a centralized place, it's much easi
 
 The traditional workflow for submitting a new package to Fedora was fragmented and tedious, relying on a manual process involving `.spec` files, external file hosting, and Bugzilla tickets. This created a high-friction environment with slow feedback loops, which often discouraged potential contributors.
 
-This project was motivated by the critical need to modernize this experience. By creating a centralized, Git-based platform, the goal was to lower the barrier to entry, attract more package maintainers, and improve the overall efficiency of the Fedora package ecosystem.
+This project was motivated by the critical need to modernize this experience. By creating a centralized, pull-request based workflow, the goal was to lower the barrier to entry for people with less experience in packaging and improve the overall efficiency of the Fedora package ecosystem.
 
 ---
 
