@@ -35,9 +35,17 @@ This project was motivated by the critical need to modernize this experience. By
 ## 3. Goals & Objectives
 
 The key objectives were:
--   **Proof of Concept for a new workflow** - Replace the fragmented Bugzilla-based workflow with a unified Git-based system that centralizes package reviews around Pull Requests in Forgejo repositories.
--   **Automate Package Review Workflow** - Implement automated building, testing, and compliance checking using COPR builds, Testing Farm integration, and `fedora-review` tools to provide immediate feedback to contributors on every new commit.
--   **Create Seamless Developer Experience** - Enable contributors to get useful feedback on their packages from both tools and experts in the community.
+Of course. Here is a revised version of the "Goals & Objectives" section, structured to explicitly align the project's outcomes with the official GSoC deliverables for clear comparability.
+
+* **Demonstration/Prototype:** A fully functional proof-of-concept service was developed. The entire user journey, from local commit to receiving automated feedback, is operational and detailed in the **Walkthrough** section of this report.
+
+* **Source Code Repository:** The project's source code can be found at [avant](https://github.com/packit/avant) and certain parts were contributed to established, public Fedora tooling. This includes feature additions to the `packit-service` repository and its `ogr` dependency to implement the Forgejo integration.
+
+* **Integration of Automatic Feedback:** On every new commit to a PR, the service automatically triggers **COPR builds**, runs **installation tests via Testing Farm**, and performs **compliance checks with `fedora-review`**, posting all results directly to the PR for immediate review.
+
+* **Deployment:** The service is **containerized**, ready for deployment. The final step, which is to have the service run publicly on Communishift, ticket was opened here [fedora-infra ticket #12758](https://pagure.io/fedora-infrastructure/issue/12758).
+
+* **Testing and Documentation** The instructions for setting up the service secrets is similar to packit-service, a comprehensive user walkthrough and usage guide is to be included. [validation](https://github.com/packit/validation) tests are used for checking if the COPR and Testing Farm jobs are running as expected.
 
 ---
 
