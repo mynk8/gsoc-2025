@@ -26,7 +26,7 @@ By integrating Git with automated tooling in a centralized place, it's much easi
 
 ## 2. Background & Motivation
 
-The traditional workflow for submitting a new package to Fedora was fragmented and tedious, relying on a manual process involving `.spec` files, external file hosting, and Bugzilla tickets. This created a high-friction environment with slow feedback loops, which often discouraged potential contributors.
+The traditional workflow for submitting a new package to Fedora was fragmented and tedious, relying on a manual process involving `.spec` files, external file hosting, and Bugzilla tickets. The old process required manual Bugzilla tickets and external file hosting, which had slower feedback loops, often discouraging potential contributors.
 
 This project was motivated by the critical need to modernize this experience. By creating a centralized, pull-request based workflow, the goal was to lower the barrier to entry for people with less experience in packaging and improve the overall efficiency of the Fedora package ecosystem.
 
@@ -121,7 +121,7 @@ This creates a tight, rapid feedback loop. Experienced packagers can also join t
 
 -   **Git Forge Integration:** Gained a deep understanding of interfacing with Git forges by contributing Forgejo support to the `ogr` library.
 -   **Container Orchestration:** Developed skills in managing containerized services, secrets, and resolving deployment challenges on Communishift (OpenShift/Kubernetes).
--   **Asynchronous Service Debugging:** Acquired advanced skills in debugging and tracing issues in complex, event-driven, and asynchronous services where problems are not easily reproducible.
+-   **Asynchronous Service Debugging:** I got much more comfortable debugging async services, especially when failures couldn’t be reproduced locally.
 -   **API and Webhook Handling:** Learned best practices for parsing, digesting, and securely handling webhook data from external services.
 
 ### Future Plans
