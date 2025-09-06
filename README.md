@@ -87,9 +87,12 @@ We can inspect the logs by clicking the "Details" link, which redirects the user
 
 <img width="1562" height="509" alt="Build details in the dashboard" src="https://github.com/user-attachments/assets/d1948864-7562-48f7-ac23-77a51732a9d6" />
 
-Checking the latest entry here, we can find the Testing Farm run and inspect the logs to trace the cause of failure. The checks failed due to a broken package and its dependencies.
+Checking the latest entry here, we can find the Testing Farm run and inspect the logs to trace the cause of failure. 
+We can see that the checks failed due to a broken package and missing dependencies.
 
 <img width="1562" height="454" alt="Testing Farm logs showing failure" src="https://github.com/user-attachments/assets/e1990ba0-4e2b-4f67-93e5-89ff8539edaf" />
+
+The reported problems can then be fixed locally, push the changes, the checks run again to provide feedback again.
 
 ### 4. Iterate and Collaborate
 
