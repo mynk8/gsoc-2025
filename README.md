@@ -16,11 +16,11 @@
 
 ## 1. Description
 
-The project introduces a proof-of-concept Git-based workflow for the Fedora package review process, an alternative to the older Bugzilla-based system.
+The project introduces a proof-of-concept, Git-based workflow for the Fedora package review process, offering an alternative to the older Bugzilla-based system.
 
-Contributors can now create, submit, and manage their package reviews through Pull Requests in a centralized Forgejo repository. The service takes care of building the packages, testing, and compliance checking with the `fedora-review` tool, and provides real-time feedback on the PR page.
+Contributors can now create, submit, and manage their package reviews through Pull Requests in a centralized Forgejo repository. The service handles package building, testing, and compliance checking with the fedora-review tool, posting real-time status updates directly to the PR page.
 
-By integrating Git with automated tooling in a centralized place, it's much easier for new contributors to get their packages into the distribution.
+This integration of Git with automated tooling into a single platform significantly lowers the barrier for new contributors to get their packages into the distribution.
 
 ---
 
@@ -35,17 +35,16 @@ This project was motivated by the critical need to modernize this experience. By
 ## 3. Goals & Objectives
 
 The key objectives were:
-Of course. Here is a revised version of the "Goals & Objectives" section, structured to explicitly align the project's outcomes with the official GSoC deliverables for clear comparability.
 
-* **Demonstration/Prototype:** A fully functional proof-of-concept service was developed. The entire user journey, from local commit to receiving automated feedback, is operational and detailed in the **Walkthrough** section of this report.
+Demonstration/Prototype: A fully functional proof-of-concept service was developed. The entire user journey, from a local commit to receiving automated results, is operational and detailed in the Walkthrough section of this report.
 
-* **Source Code Repository:** The project's source code can be found at [avant](https://github.com/packit/avant) and certain parts were contributed to established, public Fedora tooling. This includes feature additions to the `packit-service` repository and its `ogr` dependency to implement the Forgejo integration.
+Source Code Repository: The project's source code can be found at avant, with certain parts contributed to established, public Fedora tooling. This includes feature additions to the packit-service repository and its ogr dependency to implement the Forgejo integration.
 
-* **Integration of Automatic Feedback:** On every new commit to a PR, the service automatically triggers **COPR builds**, runs **installation tests via Testing Farm**, and performs **compliance checks with `fedora-review`**, posting all results directly to the PR for immediate review.
+Integration of Automatic Checks: On every new commit to a PR, the service automatically triggers COPR builds, runs installation tests via Testing Farm, and performs compliance checks with fedora-review, posting all results directly to the PR for immediate review.
 
-* **Deployment:** The service is **containerized**, ready for deployment. The final step, which is to have the service run publicly on Communishift, ticket was opened here [fedora-infra ticket #12758](https://pagure.io/fedora-infrastructure/issue/12758).
+Deployment: The service is containerized and ready for deployment. A ticket has been opened to run the service publicly on Communishift: fedora-infra ticket #12758.
 
-* **Testing and Documentation** The instructions for setting up the service secrets is similar to packit-service, a comprehensive user walkthrough and usage guide is to be included. [validation](https://github.com/packit/validation) tests are used for checking if the COPR and Testing Farm jobs are running as expected.
+Testing and Documentation: Setup instructions for service secrets are similar to those for packit-service. A comprehensive user walkthrough and usage guide are included. The project uses validation tests to ensure that COPR and Testing Farm jobs run as expected.
 
 ---
 
