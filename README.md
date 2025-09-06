@@ -38,13 +38,13 @@ The key objectives were:
 
 - **Demonstration/Prototype**: A fully functional proof-of-concept service was developed. The entire user journey, from a local commit to receiving automated results, is operational and detailed in the Walkthrough section of this report.
 
-- **Source Code Repository**: The project's source code can be found at avant, with certain parts contributed to established, public Fedora tooling. This includes feature additions to the packit-service repository and its ogr dependency to implement the Forgejo integration.
+- **Source Code Repository**: The project's source code can be found at [avant](https://github.com/packit/avant), with certain parts contributed to established, public Fedora tooling. This includes feature additions to the packit-service repository and its ogr dependency to implement the Forgejo integration.
 
 - **Integration of Automatic Checks**: On every new commit to a PR, the service automatically triggers COPR builds, runs installation tests via Testing Farm, and performs compliance checks with fedora-review, posting all results directly to the PR for immediate review.
 
-- **Deployment**: The service is containerized and ready for deployment. A ticket has been opened to run the service publicly on Communishift: fedora-infra ticket #12758.
+- **Deployment**: The service is containerized and ready for deployment. A ticket has been opened to run the service publicly on Communishift.
 
-- **Testing and Documentation**: Setup instructions for service secrets are similar to those for packit-service. A comprehensive user walkthrough and usage guide are included. The project uses validation tests to ensure that COPR and Testing Farm jobs run as expected.
+- **Testing and Documentation**: Setup instructions for service secrets are similar to those for packit-service. A comprehensive user walkthrough and usage guide are included. The project uses [validation](https://github.com/packit/validation) tests to ensure that COPR and Testing Farm jobs run as expected.
 
 ---
 
